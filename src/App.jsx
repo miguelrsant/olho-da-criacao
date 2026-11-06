@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Intro from './Intro.jsx';
 import Rail from './Rail.jsx';
 import { CHAPTERS } from './chapters.js';
 import { FRESCOS } from './frescos.js';
 import { startSite } from './engine.js';
+import logo from './assets/logo-miguelrsant.png';
 
 const TABS = [
   ['olho', 'Olho'], ['pupila', 'Pupila'], ['verbo', 'Verbo'], ['criacao', 'Criação'], ['toque', 'Toque'], ['eva', 'Eva'],
@@ -61,11 +62,34 @@ function Hero() {
   );
 }
 
+/** Créditos: aparecem no preto, depois que o olho se fecha (fim da rolagem e do modo filme). */
+function Credits() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    const io = new IntersectionObserver(([e]) => el.classList.toggle('is-in', e.intersectionRatio > .35), { threshold: [0, .35, .7] });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <footer className="credits" ref={ref}>
+      <p className="credits-k">Desenvolvimento e design</p>
+      <a className="credits-logo" href="https://miguelrsant.com.br" target="_blank" rel="noopener" aria-label="Miguel Angelo, miguelrsant.com.br (abre em nova aba)">
+        <img src={logo} alt="" width="417" height="376" />
+      </a>
+      <p className="credits-name">Miguel Angelo</p>
+      <a className="credits-url" href="https://miguelrsant.com.br" target="_blank" rel="noopener">miguelrsant.com.br</a>
+      <a className="credits-again" href="#olho">Ver de novo</a>
+    </footer>
+  );
+}
+
 function Chapter({ ch }) {
   return (
     <section id={ch.id} className="ch" aria-label={ch.label}>
       <p className="sr-only">{ch.sr}</p>
       {ch.caps.map((c, i) => <Caption key={i} cap={c} />)}
+      {ch.id === 'fim' && <Credits />}
     </section>
   );
 }
