@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Intro from './Intro.jsx';
+import Rail from './Rail.jsx';
 import { CHAPTERS } from './chapters.js';
 import { FRESCOS } from './frescos.js';
 import { startSite } from './engine.js';
@@ -7,7 +9,6 @@ const TABS = [
   ['olho', 'Olho'], ['pupila', 'Pupila'], ['verbo', 'Verbo'], ['criacao', 'Criação'], ['toque', 'Toque'], ['eva', 'Eva'],
   ['eden', 'Éden'], ['fruto', 'Fruto'], ['espada', 'Espada'], ['queda', 'Queda'], ['fim', 'Fim'],
 ];
-const RAMP = `.'\`^",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$`;
 
 function Win({ name }) {
   return <span className="win"><span className="dot" aria-hidden="true" />{name && <span className="name">{name}</span>}</span>;
@@ -60,33 +61,12 @@ function Hero() {
   );
 }
 
-function Chapter({ ch, children }) {
+function Chapter({ ch }) {
   return (
     <section id={ch.id} className="ch" aria-label={ch.label}>
       <p className="sr-only">{ch.sr}</p>
       {ch.caps.map((c, i) => <Caption key={i} cap={c} />)}
-      {children}
     </section>
-  );
-}
-
-function HowItsMade() {
-  return (
-    <div className="panel">
-      <div className="panel-head"><Win />como_e_feito.txt</div>
-      <div className="panel-body">
-        <h2 id="t-fim">Como é feito</h2>
-        <p>Cada cena é desenhada numa grade de <code data-grid>160 × 52</code> células. O brilho de cada célula escolhe uma entre <code data-rampn>56</code> letras, ordenadas pela quantidade de tinta que cada uma usa, e a letra ganha a cor da cena naquele ponto.</p>
-        <span className="ramp" data-ramp role="img" aria-label="Escala de letras, da mais leve à mais densa">{RAMP}</span>
-        <p>As pinturas são afrescos de Michelangelo no teto da Capela Sistina (1508–1512), em domínio público: <em data-list>A Criação de Adão, A Criação de Eva e O Pecado Original e a Expulsão do Paraíso</em>. O olho é desenhado por equações, direto no navegador. O corpo da serpente é escrito com as palavras dela (Gênesis 3:5) e a espada ganha fogo no fim.</p>
-        <p>Versículos de Gênesis 1 a 3, João 1 e Provérbios 15, na tradução de João Ferreira de Almeida. Inspirado no script Python <em>Eye of Creation</em>. Feito com WebGL2 e GSAP.</p>
-        <div className="row">
-          <a className="btn" href="#olho">Voltar ao olho</a>
-          <button className="btn" type="button" data-film>Assistir como filme</button>
-          <button className="btn" type="button" data-pause>Pausar animação</button>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -106,17 +86,23 @@ function BottomBar() {
 }
 
 export default function App() {
-  // o motor lê o DOM (seções, legendas, botões) e passa a cuidar do canvas e da rolagem
-  useEffect(() => { startSite(FRESCOS); }, []);
+  // ?capture, ?t e ?c (gravação e testes) pulam a entrada
+  const [intro, setIntro] = useState(() => !/[?&](capture|t|c)=?/.test(location.search));
+  // o motor lê o DOM (seções, legendas, botões) e passa a cuidar do canvas e da rolagem;
+  // com a entrada, ele nasce quando as pálpebras começam a abrir, e o olho se abre junto
+  const boot = () => startSite(FRESCOS);
+  useEffect(() => { if (!intro) boot(); }, []);
   return (
     <>
+      {intro && <Intro onOpen={boot} onDone={() => setIntro(false)} />}
+      <Rail chapters={TABS} />
       <div className="backdrop" aria-hidden="true" />
       <canvas id="stage" aria-hidden="true" />
       <TopBar />
       <main>
         <Hero />
         {CHAPTERS.map(ch => (
-          <Chapter key={ch.id} ch={ch}>{ch.id === 'fim' && <HowItsMade />}</Chapter>
+          <Chapter key={ch.id} ch={ch} />
         ))}
       </main>
       <BottomBar />

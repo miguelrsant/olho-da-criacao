@@ -20,7 +20,8 @@ const HAS_LUZ = !!FRESCO.luz;
 for (const id of ['eva', 'pecado']) if (!FRESCO[id]) FRESCO[id] = { ...FRESCO.adao, mask: null, standin: true };
 // light: [u, v, raio em fração da largura]; sword: punho (u, v) → ponta (u, v)
 // tom das letras: [expoente da curva, ganho com ombro suave, normalização da cor, brilho]; o afresco vale por célula
-const TONE = { eye: [1, 1.04, .5, .32], fresco: [.85, 1.3, .7, .4] };
+// afresco mais claro e com mais contraste (antes [.85, 1.3, .7, .4]): as pinturas aparecem melhor, sobretudo no Verbo
+const TONE = { eye: [1, 1.04, .5, .32], fresco: [.66, 2, .78, .55] };
 const PTS = {
   adao: { tipA: [496 / 1200, 281 / 608], tipG: [523 / 1200, 277 / 608], all: [.43, .5], adam: [.17, .5], god: [.7, .4] },
   luz: { all: [.5, .3], mobAll: [.5, .42], god: [.56, .42], light: [.56, .2, .24] },
@@ -556,7 +557,7 @@ function buildAtlas() {
 const view = { w: 1, h: 1, dpr: 1, aspect: 1, cw: 9, cwd: 18, chd: 32, cols: 1, rows: 1, ox: 0, oy: 0 };
 const dprCap = matchMedia('(pointer: coarse)').matches ? 1.5 : 2;
 let qualityCap = 2;
-let cellCss = innerWidth >= 1000 ? 9 : innerWidth >= 600 ? 8 : 6;
+let cellCss = innerWidth >= 600 ? 6 : 5;   // densidade alta por padrão (células pequenas, mais letras)
 let sceneTex = null, fbo = null;
 const probe = document.createElement('div');
 probe.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100svh;visibility:hidden;pointer-events:none';

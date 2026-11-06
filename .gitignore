@@ -3,3 +3,4 @@ dist
 .vercel
 *.mp4
 .DS_Store
+dist-preview
