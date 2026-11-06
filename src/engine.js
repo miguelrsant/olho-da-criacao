@@ -793,7 +793,8 @@ function frameState(Tv, clk, live) {
   st.camC = [st.iris[0] * track, st.iris[1] * track + heroY];
   if (ending) {
     const w = 1 - smooth(.2, .9, dp);
-    if (a >= 1) { st.zoom *= 1 - .1 * w; st.camC[0] -= 2 * a * .17 * w / st.zoom; }
+    // no computador o olho final fica no centro (o versículo do fim agora é centrado, acima dele)
+    if (a >= 1) { st.zoom *= 1 - .1 * w; st.camC[1] += .1 * w / st.zoom; }
     else st.camC[1] = lerp(st.camC[1], -.5 / st.zoom, w);
   }
   st.pupil = lerp(reduced ? .09 : pupilAt(clk), RP_FINAL, smooth(.12, .7, dp));
