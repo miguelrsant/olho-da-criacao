@@ -50,10 +50,10 @@ function Hero() {
       <div className="hero-copy txt">
         <p className="eyebrow">Gênesis em texto vivo</p>
         <h1 id="t-olho">O Olho da <em>Criação</em></h1>
-        <p className="lede">Cada ponto desta imagem é uma letra. O brilho escolhe a letra, a cor vem da cena, e tudo é redesenhado a cada quadro.</p>
+        <p className="lede">Os afrescos de Michelangelo, redesenhados com milhares de letras que se acendem a cada quadro.</p>
         <div className="hero-act">
-          <a className="cue" href="#pupila"><i aria-hidden="true" />Role para entrar na pupila</a>
           <button className="btn btn-film" type="button" data-film>Assistir como filme</button>
+          <a className="cue" href="#pupila">Role para entrar na pupila<i aria-hidden="true" /></a>
         </div>
       </div>
       <p className="sr-only">Na tela, um olho desenhado com letras coloridas sobre um fundo preto se abre, olha para a esquerda, para a direita e volta ao centro. Só a íris se move.</p>

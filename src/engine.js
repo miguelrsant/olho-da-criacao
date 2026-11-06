@@ -1102,9 +1102,10 @@ function initText() {
   gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
   document.querySelectorAll('[data-scramble]').forEach(el => {
     const text = el.textContent;
-    const run = () => gsap.to(el, { duration: Math.min(2, .7 + text.length * .028), ease: 'none', overwrite: true,
-      scrambleText: { text, chars: '#%&@$*+=:;!?/|<>[]{}~^', speed: .55, revealDelay: .1 } });
-    ScrollTrigger.create({ trigger: el, start: 'top 88%', end: 'bottom 12%', onEnter: run, onEnterBack: run });
+    // rápido: a frase se decifra em menos de um segundo (antes levava até 2 s)
+    const run = () => gsap.to(el, { duration: Math.min(.8, .3 + text.length * .009), ease: 'power1.out', overwrite: true,
+      scrambleText: { text, chars: '#%&@$*+=:;!?/|<>[]{}~^', speed: 1 } });
+    ScrollTrigger.create({ trigger: el, start: 'top 94%', end: 'bottom 6%', onEnter: run, onEnterBack: run });
   });
 }
 }

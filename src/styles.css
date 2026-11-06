@@ -169,3 +169,21 @@ html::-webkit-scrollbar{display:none}
 .cap.end .eyebrow::before,.cap.end .eyebrow::after,.cap.end .cite::before,.cap.end .cite::after{content:"";width:clamp(28px,6vw,64px);height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .cap.end .eyebrow::after,.cap.end .cite::after{transform:scaleX(-1)}
 .cap.end .txt{display:flex;flex-direction:column;align-items:center}
+
+/* ---------- página inicial: centrada sob o olho, no mesmo desenho do fecho ---------- */
+.hero-copy{margin:0 auto;max-width:54rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero-copy::before{inset:-40px -90px;background:radial-gradient(closest-side,rgba(0,0,0,.72),transparent)}
+.hero-copy .eyebrow{display:inline-flex;align-items:center;gap:14px;letter-spacing:.42em;margin:0 0 18px}
+.hero-copy .eyebrow::before,.hero-copy .eyebrow::after{content:"";width:clamp(28px,6vw,64px);height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.hero-copy .eyebrow::after{transform:scaleX(-1)}
+.hero-copy h1{font-size:clamp(2.7rem,7.2vw,6.6rem);line-height:.98;white-space:nowrap}
+.hero-copy h1 em{text-shadow:0 0 34px rgba(217,180,80,.3)}
+.hero-copy .lede{margin:18px auto 0;max-width:30rem;color:var(--ash-2);font-size:clamp(1.15rem,1.7vw,1.45rem)}
+.hero-act{flex-direction:column;align-items:center;gap:16px;margin-top:26px}
+.btn-film{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 22px;border-color:rgba(217,180,80,.6);color:var(--gold);background:rgba(0,0,0,.55);letter-spacing:.18em}
+.btn-film::before{content:"▶";content:"▶" / "";font-size:9px}
+.btn-film:hover{background:var(--gold);color:#000}
+.hero-copy .cue{flex-direction:column;gap:10px;min-height:0;color:var(--ash);font-size:10px;letter-spacing:.3em}
+.hero-copy .cue i{height:34px}
+@media (max-width:520px){.hero-copy h1{white-space:normal}.hero-copy .eyebrow{letter-spacing:.3em}}
+@media (max-height:640px){.hero-copy .cue{display:none}}
