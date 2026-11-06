@@ -147,15 +147,25 @@ html::-webkit-scrollbar{display:none}
 
 /* ---------- entrada ---------- */
 .intro-on{overflow:hidden}
-.intro{position:fixed;inset:0;z-index:20;display:grid;place-items:center;cursor:pointer;color:var(--bone)}
+.intro{position:fixed;inset:0;z-index:20;cursor:pointer;color:var(--bone)}
 .lid{position:absolute;left:0;right:0;height:50.5%;background:var(--void)}
 .lid-top{top:0}
 .lid-bot{bottom:0}
-.intro-core{position:absolute;left:0;right:0;bottom:calc(50% + 34px);display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px}
-.intro-cmd{margin:0 0 22px;font:500 12px/1 var(--f-mono);letter-spacing:.06em;color:var(--ash);min-height:1em}
-.intro-title{margin:0;font:400 clamp(1.9rem,7vw,5.6rem)/1 var(--f-mono);letter-spacing:-.02em;color:var(--bone);min-height:1em;white-space:nowrap}
-.intro-sub{margin:20px 0 0;font:600 11px/1 var(--f-mono);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);opacity:0}
-.intro-bar{position:absolute;left:50%;top:50%;width:min(260px,60vw);height:1px;transform:translate(-50%,-50%);background:rgba(217,180,80,.18);opacity:0}
-.intro-bar i{position:absolute;inset:0;background:var(--gold);box-shadow:0 0 12px var(--gold);transform-origin:center;transform:scaleX(0)}
-.intro-skip{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);left:0;right:0;margin:0;text-align:center;font:500 10px/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ash);opacity:.5}
-@media (pointer:fine){.intro-skip::after{content:" ou aperte uma tecla"}}
+.intro-core{position:absolute;left:0;right:0;bottom:calc(50% + 22px);display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px}
+.intro-title{margin:0;font:500 clamp(2.6rem,8vw,6.4rem)/1 var(--f-display);letter-spacing:-.012em;white-space:nowrap}
+.intro-title em{font-style:italic;font-weight:400;color:var(--gold);text-shadow:0 0 28px rgba(217,180,80,.35)}
+.intro-title .ch{display:inline-block;min-width:.18em;will-change:transform,filter,opacity}
+.intro-sub{order:-1;margin:0 0 18px;font:600 10.5px/1 var(--f-mono);letter-spacing:.34em;text-transform:uppercase;color:var(--ash);opacity:0}
+.intro-line{position:absolute;left:50%;top:50%;width:min(300px,62vw);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold) 18%,#fff6dc 50%,var(--gold) 82%,transparent);box-shadow:0 0 14px rgba(217,180,80,.8);opacity:0}
+
+/* ---------- a última legenda: um fecho centrado ---------- */
+.cap.end{justify-content:center;text-align:center}
+.cap.end>div{max-width:min(48rem,100%)}
+.cap.end h2{font-size:clamp(2.1rem,4.4vw,3.9rem);line-height:1.12;font-weight:400}
+.cap.end .eyebrow,.cap.end .cite{display:inline-flex;align-items:center;gap:14px;margin:0;background:none;box-shadow:none;padding:0}
+.cap.end .eyebrow{margin-bottom:22px;letter-spacing:.42em}
+.cap.end .cite{margin-top:22px;letter-spacing:.26em;color:var(--ash-2)}
+.cap.end .eyebrow::before,.cap.end .eyebrow::after,.cap.end .cite::before,.cap.end .cite::after{content:"";width:clamp(28px,6vw,64px);height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.cap.end .eyebrow::after,.cap.end .cite::after{transform:scaleX(-1)}
+.cap.end .txt{display:flex;flex-direction:column;align-items:center}

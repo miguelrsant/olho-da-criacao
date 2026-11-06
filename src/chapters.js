@@ -195,9 +195,9 @@ export const CHAPTERS = [
     "caps": [
       {
         "at": 110,
-        "eyebrow": "11 · Fim",
+        "cls": "end",
+        "eyebrow": "Fim",
         "h2": "Os olhos do Senhor estão em todo lugar, contemplando os maus e os bons.",
-        "long": true,
         "cite": "Provérbios 15:3"
       }
     ]

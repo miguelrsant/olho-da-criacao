@@ -17,7 +17,7 @@ function Win({ name }) {
 function TopBar() {
   return (
     <header className="bar bar-top">
-      <Win name="o_olho_da_criacao.py" />
+      <Win />
       <nav className="tabs" aria-label="Capítulos">
         {TABS.map(([id, label], i) => (
           <a key={id} href={`#${id}`} data-ch={id} aria-current={i === 0 ? 'step' : undefined}>{label}</a>

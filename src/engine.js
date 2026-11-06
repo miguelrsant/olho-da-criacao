@@ -383,7 +383,8 @@ void main(){
   if(uWords > .5 && A > 100. && A < 160.){
     float th = clamp(length((cell - uWave)*vec2(1., 1.79))/(uGrid.x*1.05), 0., 1.)*.8 + h12(cell + 3.1)*.2;
     float st = uDecode - th;
-    if(st < 0.){ gi = textGlyph(pos, uTxtWords); word = true; }
+    // as palavras escrevem só as figuras; o fundo escuro fica em letras finas e estrelas
+    if(st < 0.){ if(lum > .055){ gi = textGlyph(pos, uTxtWords); word = true; } }
     else if(st < .07){ gi = floor(h12(cell + floor(uTime*24.))*(uRampN - .001)); }
   }
   // o corpo da serpente é escrito com as palavras dela
@@ -406,7 +407,10 @@ void main(){
   float m = textureGrad(uAtlas, auv, dx, dy).r;
   float b = textureLod(uAtlas, auv, uGlowLod).r;
   vec3 col;
-  if(word){ col = snake ? min(pow(c, vec3(1.3))*2.1, vec3(1.15)) : min(pow(c, vec3(.8))*1.55, vec3(1.15)); }
+  if(word){
+    // palavras: a cor da pintura, mais clara e puxada para o dourado, com um brilho que corre pelas linhas
+    float sh = .88 + .22*sin(uTime*1.6 - src.x*.09 + src.y*.35);
+    col = snake ? min(pow(c, vec3(1.3))*2.1, vec3(1.15)) : min(mix(pow(c, vec3(.72))*1.75, vec3(1., .84, .5)*(.55 + lum), .22)*sh, vec3(1.2)); }
   else { float mx = max(max(c.r, c.g), max(c.b, 1e-3)); col = mix(c, c/mx*.95, tn.z*smoothstep(.06, .4, lum));
     col = mix(col, min(pow(c, vec3(.8))*1.55, vec3(1.15)), uBurst.z*smoothstep(.5, .9, lum)); }
   if(star > 0.) col = vec3(.95, .88, .7)*star;
@@ -557,7 +561,7 @@ function buildAtlas() {
 const view = { w: 1, h: 1, dpr: 1, aspect: 1, cw: 9, cwd: 18, chd: 32, cols: 1, rows: 1, ox: 0, oy: 0 };
 const dprCap = matchMedia('(pointer: coarse)').matches ? 1.5 : 2;
 let qualityCap = 2;
-let cellCss = innerWidth >= 600 ? 6 : 5;   // densidade alta por padrão (células pequenas, mais letras)
+let cellCss = innerWidth >= 600 ? 5 : 4;   // densidade alta por padrão (células pequenas, mais letras)
 let sceneTex = null, fbo = null;
 const probe = document.createElement('div');
 probe.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100svh;visibility:hidden;pointer-events:none';
