@@ -73,13 +73,22 @@ function Credits() {
   }, []);
   return (
     <footer className="credits" ref={ref}>
-      <p className="credits-k">Desenvolvimento e design</p>
+      <p className="credits-k">Site desenvolvido por</p>
       <a className="credits-logo" href="https://miguelrsant.com.br" target="_blank" rel="noopener" aria-label="Miguel Angelo, miguelrsant.com.br (abre em nova aba)">
         <img src={logo} alt="" width="417" height="376" />
       </a>
       <p className="credits-name">Miguel Angelo</p>
       <a className="credits-url" href="https://miguelrsant.com.br" target="_blank" rel="noopener">miguelrsant.com.br</a>
+      <p className="credits-links">
+        <a href="https://www.instagram.com/miguelrsant/" target="_blank" rel="noopener">Instagram @miguelrsant</a>
+        <a href="https://github.com/miguelrsant/olho-da-criacao" target="_blank" rel="noopener">Código no GitHub</a>
+      </p>
       <a className="credits-again" href="#olho">Ver de novo</a>
+      <nav className="credits-nav" aria-label="Sobre o site">
+        <a href="/sobre">Sobre</a>
+        <a href="/contato">Contato</a>
+        <a href="/privacidade">Privacidade</a>
+      </nav>
     </footer>
   );
 }

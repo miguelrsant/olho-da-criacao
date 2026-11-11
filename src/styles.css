@@ -204,7 +204,12 @@ html::-webkit-scrollbar{display:none}
 .credits-name{margin:26px 0 0;font:500 clamp(1.8rem,3.4vw,2.6rem)/1 var(--f-display);color:var(--bone)}
 .credits-url{margin-top:12px;font:500 12px/1 var(--f-mono);letter-spacing:.2em;color:var(--ash-2);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .credits-url:hover{color:var(--gold);border-color:var(--gold)}
-.credits-again{margin-top:42px;font:600 10px/1 var(--f-mono);letter-spacing:.3em;text-transform:uppercase;color:var(--ash);text-decoration:none;padding:10px 0}
+.credits-links,.credits-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margin:18px 0 0}
+.credits-links a,.credits-nav a{font:500 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ash-2);text-decoration:none;padding:8px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.credits-links a:hover,.credits-nav a:hover{color:var(--gold);border-color:var(--gold)}
+.credits-nav{margin-top:10px}.credits-nav a{font-size:10px;color:var(--ash)}
+.credits.is-in>:nth-child(n+6){transition-delay:.5s}
+.credits-again{margin-top:30px;font:600 10px/1 var(--f-mono);letter-spacing:.3em;text-transform:uppercase;color:var(--ash);text-decoration:none;padding:10px 0}
 .credits-again:hover{color:var(--gold)}
 @media (prefers-reduced-motion:reduce){.credits>*{transition:none}}
 @media (max-width:520px){.credits-k{letter-spacing:.26em;gap:10px;white-space:nowrap}.credits-k::before,.credits-k::after{width:22px}}
